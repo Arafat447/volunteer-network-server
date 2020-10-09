@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require ('cors');
 const { ObjectID, ObjectId } = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://arafat447:arafatmoriom@cluster0.9a5nl.mongodb.net/volunteer?retryWrites=true&w=majority";
+require('dotenv').config();
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.9a5nl.mongodb.net/volunteer?retryWrites=true&w=majority`;
 const app = express();
 
 app.use(cors());
@@ -55,6 +56,6 @@ client.connect(err => {
 });
 
 
-app.listen(4000, () => {
+app.listen(process.env.PORT || 4000, () => {
   console.log('listening port 4000')
 })
